@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "contact-sport"
+version = "0.0.1"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.7"
+redis = "^3.4"
+flask = "^1.1"
+Flask-SSLify = "^0.1.5"
+Gunicorn = "^20.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.4"
