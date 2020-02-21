@@ -10,6 +10,7 @@ redis = "^3.4"
 flask = "^1.1"
 Flask-SSLify = "^0.1.5"
 Gunicorn = "^20.0"
+wtforms = "^2.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.4"

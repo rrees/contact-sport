@@ -5,5 +5,19 @@
 {% block content %}
 <div class="container-fluid">
 <h1>Login</h1>
+
+<form method="POST" action="{{url_for('passwordless.login_form')}}">
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input id="email" name="email"
+			class="form-control"
+			type="email"
+			placeholder="Email"
+			required>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 </div>
 {% endblock %}
