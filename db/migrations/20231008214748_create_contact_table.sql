@@ -6,7 +6,8 @@ CREATE TABLE contact (
 	name text,
 	tags text[],
 	created timestamp default current_timestamp,
-	updated timestamp default current_timestamp
+	updated timestamp default current_timestamp,
+	PRIMARY KEY(id)
 );
 
 CREATE OR REPLACE FUNCTION update_modified_column() 
@@ -24,6 +25,9 @@ FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
 
 -- migrate:down
 
-DROP TABLE table contact;
+DROP TABLE contact;
+DROP TRIGGER
+IF EXISTS update_contact_modtime
+ON contact;
 
 DROP FUNCTION update_modified_column;
