@@ -2,8 +2,8 @@
 
 CREATE TABLE contact (
 	id serial,
-	external_id uuid UNIQUE,
-	name text,
+	external_id uuid UNIQUE NOT NULL,
+	name text UNIQUE NOT NULL,
 	tags text[],
 	created timestamp default current_timestamp,
 	updated timestamp default current_timestamp,

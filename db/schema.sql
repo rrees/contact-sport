@@ -40,10 +40,10 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.address (
     id integer NOT NULL,
-    external_id uuid,
-    contact_id integer,
-    label text,
-    address text,
+    external_id uuid NOT NULL,
+    contact_id integer NOT NULL,
+    label text NOT NULL,
+    address text NOT NULL,
     created timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     updated timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
@@ -69,8 +69,8 @@ ALTER TABLE public.address ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 CREATE TABLE public.contact (
     id integer NOT NULL,
-    external_id uuid,
-    name text,
+    external_id uuid NOT NULL,
+    name text NOT NULL,
     tags text[],
     created timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     updated timestamp without time zone DEFAULT CURRENT_TIMESTAMP
@@ -135,6 +135,14 @@ ALTER TABLE ONLY public.address
 
 ALTER TABLE ONLY public.contact
     ADD CONSTRAINT contact_external_id_key UNIQUE (external_id);
+
+
+--
+-- Name: contact contact_name_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contact
+    ADD CONSTRAINT contact_name_key UNIQUE (name);
 
 
 --

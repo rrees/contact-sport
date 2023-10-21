@@ -2,10 +2,10 @@
 
 CREATE TABLE address (
 	id INT GENERATED ALWAYS AS IDENTITY,
-	external_id uuid UNIQUE,
-	contact_id integer,
-	label text,
-	address text,
+	external_id uuid UNIQUE NOT NULL,
+	contact_id integer NOT NULL,
+	label text NOT NULL,
+	address text NOT NULL,
 	created timestamp default current_timestamp,
 	updated timestamp default current_timestamp,
 	PRIMARY KEY(id),
