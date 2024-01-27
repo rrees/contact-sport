@@ -1,10 +1,26 @@
 {% extends 'default.html' %}
 
+
+{% block title %}Front page{% endblock %}
 {% block navbar %}
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-    <p><em>Hello</em> <strong>world</strong></p>
+    <h1>Contact Sport</h1>
+
+    <h2>Login</h2>
+
+    <form action="{{url_for('passwordless.login_form')}}"
+    	method="POST">
+    	<label for="email">Email</label>
+    	<input
+    		type="email"
+    		id="email"
+    		name="email"
+    		placeholder="Email address">
+
+    	<button type="submit">Login</button>
+    </form>
 </div>
 {% endblock %}
