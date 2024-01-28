@@ -26,3 +26,26 @@ def login_form():
 @passwordless_blueprint.route("/login/sent")
 def login_sent():
     return flask.render_template(("login-sent.html"))
+
+
+def check_session():
+    flask.current_app.logger.debug("Check session middleware starting")
+
+    flask.current_app.logger.info(flask.request.url_rule.endpoint)
+
+    current_request = flask.request
+
+    if current_request.url_rule.endpoint == "index":
+        return
+
+    if current_request.path.startswith("/auth"):
+        return
+
+    if "authenticated" in flask.session:
+        return
+
+    flask.current_app.logger.info("Attempt to access page requiring authentication")
+    return flask.redirect(flask.url_for("index"))
+
+
+passwordless_blueprint.before_app_request(check_session)

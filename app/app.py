@@ -35,7 +35,7 @@ routes = [
 for path, endpoint, handler, methods in routes:
     app.add_url_rule(path, endpoint, handler, methods=methods)
 
-app.register_blueprint(passwordless_blueprint)
+app.register_blueprint(passwordless_blueprint, url_prefix="/auth")
 
 
 @app.errorhandler(500)
