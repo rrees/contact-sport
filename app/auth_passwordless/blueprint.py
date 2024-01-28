@@ -2,8 +2,10 @@ import flask
 
 from . import forms
 
+URL_PREFIX = "/auth"
+
 passwordless_blueprint = flask.Blueprint(
-    "passwordless", __name__, template_folder="templates"
+    "passwordless", __name__, template_folder="templates", url_prefix=URL_PREFIX
 )
 
 
@@ -31,14 +33,14 @@ def login_sent():
 def check_session():
     flask.current_app.logger.debug("Check session middleware starting")
 
-    flask.current_app.logger.info(flask.request.url_rule.endpoint)
+    flask.current_app.logger.debug(f"Rule name: {flask.request.url_rule.endpoint}")
 
     current_request = flask.request
 
     if current_request.url_rule.endpoint == "index":
         return
 
-    if current_request.path.startswith("/auth"):
+    if current_request.path.startswith(URL_PREFIX):
         return
 
     if "authenticated" in flask.session:
