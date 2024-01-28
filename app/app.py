@@ -1,6 +1,5 @@
 import os
 import logging
-from logging.config import dictConfig
 
 import flask
 
@@ -15,17 +14,10 @@ redis_url = os.environ.get("REDIS_URL", None)
 
 redis = redis_utils.setup_redis(redis_url) if redis_url else None
 
-dictConfig(
-    {
-        "version": 1,
-        "root": {
-            "level": "INFO",
-        },
-    }
-)
-
 app = flask.Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
+
+app.logger.setLevel(logging.INFO)
 
 routes = [
     ("/", "index", handlers.pages.front_page, ["GET"]),

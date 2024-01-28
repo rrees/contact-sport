@@ -1,7 +1,7 @@
 
 [*.py]
 indent_size = 4
-indent_style = tab
+indent_style = space
 
 [*.html]
 indent_size = 4

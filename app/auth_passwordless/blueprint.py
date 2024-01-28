@@ -1,8 +1,11 @@
 import flask
+from uuid import uuid4
 
 from . import forms
+from . import middleware
 
 URL_PREFIX = "/auth"
+AUTH_SESSION_KEY = "authenticated"
 
 passwordless_blueprint = flask.Blueprint(
     "passwordless", __name__, template_folder="templates", url_prefix=URL_PREFIX
@@ -30,24 +33,18 @@ def login_sent():
     return flask.render_template(("login-sent.html"))
 
 
-def check_session():
-    flask.current_app.logger.debug("Check session middleware starting")
+@passwordless_blueprint.route("/login/redeem/<token>")
+def login_with_token(token):
+    flask.session[AUTH_SESSION_KEY] = uuid4()
+    return flask.redirect(flask.url_for("home"))
 
-    flask.current_app.logger.debug(f"Rule name: {flask.request.url_rule.endpoint}")
 
-    current_request = flask.request
-
-    if current_request.url_rule.endpoint == "index":
-        return
-
-    if current_request.path.startswith(URL_PREFIX):
-        return
-
-    if "authenticated" in flask.session:
-        return
-
-    flask.current_app.logger.info("Attempt to access page requiring authentication")
+@passwordless_blueprint.route("/logout")
+def logout():
+    flask.session.pop(AUTH_SESSION_KEY, None)
     return flask.redirect(flask.url_for("index"))
 
 
-passwordless_blueprint.before_app_request(check_session)
+passwordless_blueprint.before_app_request(
+    middleware.check_session(URL_PREFIX, AUTH_SESSION_KEY)
+)
