@@ -22,6 +22,7 @@ app.logger.setLevel(logging.INFO)
 routes = [
     ("/", "index", handlers.pages.front_page, ["GET"]),
     ("/home", "home", handlers.pages.home_page, ["GET"]),
+    ("/contacts", "contacts", handlers.pages.contacts, ["GET"]),
 ]
 
 for path, endpoint, handler, methods in routes:

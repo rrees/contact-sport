@@ -1,0 +1,14 @@
+{% extends 'default.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+
+{% if not contacts %}
+<p>No contacts currently defined</p>
+
+
+{% endif %}
+
+{% endblock %}

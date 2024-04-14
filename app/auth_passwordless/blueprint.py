@@ -4,6 +4,10 @@ from uuid import uuid4
 from . import forms
 from . import middleware
 
+from .services import email
+from .services import tokens
+from .services import user_session
+
 URL_PREFIX = "/auth"
 AUTH_SESSION_KEY = "authenticated"
 
@@ -23,6 +27,8 @@ def login_form():
 
     if login_form.validate():
         flask.current_app.logger.info(login_form.email.data)
+        token = tokens.create_token()
+        email.send_email()
         return flask.redirect(flask.url_for("passwordless.login_sent"))
 
     return flask.redirect(flask.url_for("passwordless.login"))
@@ -35,7 +41,7 @@ def login_sent():
 
 @passwordless_blueprint.route("/login/redeem/<token>")
 def login_with_token(token):
-    flask.session[AUTH_SESSION_KEY] = uuid4()
+    user_session.create_session(sesssion_key=AUTH_SESSION_KEY)
     return flask.redirect(flask.url_for("home"))
 
 

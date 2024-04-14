@@ -7,3 +7,7 @@ def front_page():
 
 def home_page():
     return flask.render_template("home.html")
+
+
+def contacts():
+    return flask.render_template("contacts.html", contacts=[])
