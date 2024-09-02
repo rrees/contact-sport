@@ -1,4 +1,0 @@
-Flask
-gunicorn
-Flask-SSLify
-redis
