@@ -29,7 +29,7 @@ routes = [
 for path, endpoint, handler, methods in routes:
     app.add_url_rule(path, endpoint, handler, methods=methods)
 
-# app.register_blueprint(passwordless_blueprint)
+app.register_blueprint(passwordless_blueprint)
 
 
 @app.before_request

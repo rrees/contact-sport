@@ -1,8 +1,15 @@
+import os
+
 import flask
+
+ENABLE_SESSION_CHECKING = os.environ.get("AUTH_SESSION_CHECKING", False)
 
 
 def check_session(url_prefix, session_key):
     def check_session_middleware():
+        if not ENABLE_SESSION_CHECKING:
+            return
+
         flask.current_app.logger.debug("Check session middleware starting")
 
         current_request = flask.request
