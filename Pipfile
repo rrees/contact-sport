@@ -8,8 +8,10 @@ flask = "*"
 gunicorn = "*"
 redis = "*"
 wtforms = "*"
+psycopg = {extras = ["binary"], version = "*"}
 
 [dev-packages]
+bpython = "*"
 
 [requires]
 python_version = "3.11"

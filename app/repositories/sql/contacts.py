@@ -1,3 +1,2 @@
-
-ALL_CONTACTS=```SELECT *
-FROM contacts```
+all = """SELECT *
+FROM contact"""
