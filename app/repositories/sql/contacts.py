@@ -2,7 +2,8 @@ all = """SELECT
     external_id,
     name,
     tags
-FROM contact"""
+FROM contact
+ORDER BY name"""
 
 insert = """
 INSERT INTO contact (

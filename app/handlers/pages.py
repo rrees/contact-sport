@@ -1,5 +1,7 @@
 import flask
 
+from app.repositories import contacts as contacts_repository
+
 
 def front_page():
     return flask.render_template("index.html")
@@ -10,4 +12,4 @@ def home_page():
 
 
 def contacts():
-    return flask.render_template("contacts.html", contacts=[])
+    return flask.render_template("contacts.html", contacts=contacts_repository.all())

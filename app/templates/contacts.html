@@ -3,12 +3,20 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Home</h1>
+<h1>Contacts</h1>
 
 {% if not contacts %}
 <p>No contacts currently defined</p>
+{% endif %}
 
-
+{% if contacts %}
+<ol>
+{% for contact in contacts %}
+	<li>
+		{{contact.name}}
+	</li>
+{% endfor %}
+</ol>
 {% endif %}
 
 {% endblock %}
