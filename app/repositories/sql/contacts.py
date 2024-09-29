@@ -19,6 +19,7 @@ INSERT INTO contact (
 
 full = """
 SELECT
+    external_id,
     name,
     tags
 FROM contact

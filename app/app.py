@@ -6,6 +6,7 @@ import flask
 
 from . import handlers
 from . import redis_utils
+
 from app.auth_passwordless.blueprint import passwordless_blueprint
 
 ENV = os.environ.get("ENV", "PROD")
@@ -25,7 +26,7 @@ routes = [
     ("/home", "home", handlers.pages.home_page, ["GET"]),
     ("/contacts", "contacts", handlers.pages.contacts, ["GET"]),
     ("/contact/<contact_id>", "contact", handlers.pages.contact, ["GET"]),
-]
+] + handlers.routes
 
 for path, endpoint, handler, methods in routes:
     app.add_url_rule(path, endpoint, handler, methods=methods)

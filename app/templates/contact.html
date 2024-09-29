@@ -4,5 +4,11 @@
 
 {% block content %}
 <h1>{{contact.name}}</h1>
+<form method="POST"
+	action="{{url_for('address_form')}}">
+	<input type="hidden" name="contact_id" value="{{contact.external_id}}" />
+	{% include 'forms/address.html' %}
 
+	<button type="submit">Save</button>
+</form>
 {% endblock %}
