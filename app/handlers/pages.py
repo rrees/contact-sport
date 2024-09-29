@@ -1,5 +1,6 @@
 import flask
 
+from app.models import Contact
 from app.repositories import contacts as contacts_repository
 
 
@@ -13,3 +14,9 @@ def home_page():
 
 def contacts():
     return flask.render_template("contacts.html", contacts=contacts_repository.all())
+
+
+def contact(contact_id):
+    contact_details = Contact.from_dict(contacts_repository.full(contact_id))
+
+    return flask.render_template("contact.html", contact=contact_details)

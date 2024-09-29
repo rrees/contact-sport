@@ -24,6 +24,7 @@ routes = [
     ("/", "index", handlers.pages.home_page, ["GET"]),
     ("/home", "home", handlers.pages.home_page, ["GET"]),
     ("/contacts", "contacts", handlers.pages.contacts, ["GET"]),
+    ("/contact/<contact_id>", "contact", handlers.pages.contact, ["GET"]),
 ]
 
 for path, endpoint, handler, methods in routes:

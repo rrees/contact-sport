@@ -13,7 +13,7 @@
 <ol>
 {% for contact in contacts %}
 	<li>
-		{{contact.name}}
+		<a href="{{url_for('contact', contact_id=contact.external_id)}}">{{contact.name}}</a>
 	</li>
 {% endfor %}
 </ol>
