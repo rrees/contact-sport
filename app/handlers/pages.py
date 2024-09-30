@@ -17,6 +17,8 @@ def contacts():
 
 
 def contact(contact_id):
-    contact_details = Contact.from_dict(contacts_repository.full(contact_id))
+    a_contact = contacts_repository.full(contact_id)
+    print(a_contact)
+    contact_details = Contact.from_dict(a_contact)
 
     return flask.render_template("contact.html", contact=contact_details)

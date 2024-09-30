@@ -4,6 +4,20 @@
 
 {% block content %}
 <h1>{{contact.name}}</h1>
+
+{% if contact.addresses %}
+<h2>Addresses</h2>
+
+<ul>
+	{% for address in contact.addresses %}
+	<li>
+		<h3>{{address.label}}</h3>
+		<pre>{{address.address}}</pre>
+	</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
 <form method="POST"
 	action="{{url_for('address_form')}}">
 	<input type="hidden" name="contact_id" value="{{contact.external_id}}" />

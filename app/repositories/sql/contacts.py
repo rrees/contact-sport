@@ -21,6 +21,16 @@ full = """
 SELECT
     external_id,
     name,
-    tags
+    tags,
+    ARRAY(
+        SELECT
+            ARRAY[
+                external_id::text,
+                label,
+                address
+            ]
+        FROM address
+        WHERE contact_id = contact.id
+    ) AS addresses
 FROM contact
 WHERE external_id = %(external_id)s"""
