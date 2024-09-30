@@ -23,4 +23,6 @@ def create(contact_external_id, label, address):
             }
             cursor.execute(addresses_sql.insert, params)
 
-            return cursor.fetchone()
+            result = cursor.fetchone()
+
+            return result["row"]

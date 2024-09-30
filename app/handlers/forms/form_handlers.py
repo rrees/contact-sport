@@ -9,9 +9,12 @@ def address():
     form = AddressForm(flask.request.form)
 
     if form.validate():
+        contact_id = form.contact_id.data
+
         [id, external_id] = address_repository.create(
-            form.contact_id.data, form.label.data, form.address.data
+            contact_id, form.label.data, form.address.data
         )
-        return flask.redirect(flask.url_for("home"))
+
+        return flask.redirect(flask.url_for("contact", contact_id=contact_id))
 
     return flask.abort(400)
