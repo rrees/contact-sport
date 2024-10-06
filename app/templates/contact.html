@@ -18,11 +18,14 @@
 </ul>
 {% endif %}
 
-<form method="POST"
-	action="{{url_for('address_form')}}">
-	<input type="hidden" name="contact_id" value="{{contact.external_id}}" />
-	{% include 'forms/address.html' %}
+<details>
+	<summary>Add a new address</summary>
+	<form method="POST"
+		action="{{url_for('address_form')}}">
+		<input type="hidden" name="contact_id" value="{{contact.external_id}}" />
+		{% include 'forms/address.html' %}
 
-	<button type="submit">Save</button>
-</form>
+		<button type="submit">Save</button>
+	</form>
+</details>
 {% endblock %}
