@@ -1,5 +1,3 @@
-import uuid
-
 from .connect import connect
 
 from .sql import contacts as sql_contacts
@@ -18,8 +16,9 @@ def create(name, tags=None):
 
     with connect() as conn:
         with conn.cursor() as cursor:
-            params = {"name": name, "tags": tags, "external_id": uuid.uuid4()}
+            params = {"name": name, "tags": tags}
             cursor.execute(sql_contacts.insert, params)
+            return cursor.fetchone().get("row")
 
 
 def full(an_id):

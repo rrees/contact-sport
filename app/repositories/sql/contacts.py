@@ -8,12 +8,10 @@ ORDER BY name"""
 insert = """
 INSERT INTO contact (
     name,
-    tags,
-    external_id
+    tags
 ) VALUES (
     %(name)s,
-    %(tags)s,
-    %(external_id)s
+    %(tags)s
 ) RETURNING (id, external_id)"""
 
 
@@ -31,6 +29,16 @@ SELECT
             ]
         FROM address
         WHERE contact_id = contact.id
-    ) AS addresses
+    ) AS addresses,
+    ARRAY (
+        SELECT
+            ARRAY[
+                external_id::text,
+                label,
+                email
+            ]
+            FROM email
+            WHERE contact_id = contact.id
+    ) AS emails
 FROM contact
 WHERE external_id = %(external_id)s"""

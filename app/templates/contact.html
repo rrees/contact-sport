@@ -8,7 +8,7 @@
 {% if contact.addresses %}
 <h2>Addresses</h2>
 
-<ul>
+<ul class="list-reset flex">
 	{% for address in contact.addresses %}
 	<li>
 		<h3>{{address.label}}</h3>
@@ -21,11 +21,23 @@
 <details>
 	<summary>Add a new address</summary>
 	<form method="POST"
-		action="{{url_for('address_form')}}">
+		action="{{url_for('address_add_form')}}">
 		<input type="hidden" name="contact_id" value="{{contact.external_id}}" />
 		{% include 'forms/address.html' %}
 
 		<button type="submit">Save</button>
 	</form>
 </details>
+
+<details>
+	<summary>Add a new email</summary>
+	<form method="POST"
+		action="{{url_for('email_add_form')}}">
+		<input type="hidden" name="contact_id" value="{{contact.external_id}}" />
+		{% include 'forms/email.html' %}
+
+		<button type="submit">Save</button>
+	</form>
+</details>
+
 {% endblock %}

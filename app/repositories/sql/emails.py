@@ -1,10 +1,10 @@
-insert = """INSERT INTO address (
+insert = """INSERT INTO email (
     contact_id,
     label,
-    address
+    email
 ) VALUES (
     (SELECT id FROM contact WHERE external_id = %(contact_id)s),
     %(label)s,
-    %(address)s
+    %(email)s
 )
 RETURNING (id, external_id)"""

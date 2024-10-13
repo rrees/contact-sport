@@ -1,17 +1,17 @@
 from .connect import connect
-from .sql import addresses as addresses_sql
+from .sql import emails as emails_sql
 
 
-def create(contact_external_id, label, address):
+def create(contact_external_id, label, email):
     with connect() as conn:
         with conn.cursor() as cursor:
             params = {
                 "contact_id": contact_external_id,
                 "label": label,
-                "address": address,
+                "email": email,
             }
 
-            cursor.execute(addresses_sql.insert, params)
+            cursor.execute(emails_sql.insert, params)
 
             result = cursor.fetchone()
 
