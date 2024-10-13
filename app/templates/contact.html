@@ -5,6 +5,17 @@
 {% block content %}
 <h1>{{contact.name}}</h1>
 
+{% if contact.emails %}
+<h2>Emails</h2>
+
+<ul class="list-reset flex flex-column">
+	{% for email in contact.emails %}
+	<li>{{email.label}}: <a href="mailto:{{email.email}}">{{email.email}}</a></li>
+	{% endfor %}
+</ul>
+
+{% endif %}
+
 {% if contact.addresses %}
 <h2>Addresses</h2>
 
