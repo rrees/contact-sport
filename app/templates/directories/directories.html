@@ -8,13 +8,13 @@
 {% if directories %}
 <ul>
 {% for directory in directories %}
-	<li>directory.name</li>
+	<li>{{directory.name}}</li>
 {% endfor %}
 </ul>
 {% else %}
 <p> No directories defined</p>
 
-<p><a>Create a directory</a></p>
+<p><a href="{{url_for('create_directory')}}">Create a directory</a></p>
 {% endif %}
 
 {% endblock %}

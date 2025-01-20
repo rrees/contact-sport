@@ -1,0 +1,21 @@
+{% extends 'default.html' %}
+
+{% block title %}Create Directory{% endblock %}
+
+{% block content %}
+<h1>Create a directory</h1>
+
+<form
+	method="POST"
+	action="{{url_for('directory_add_form')}}">
+	<label for="name">Name</label>
+	<input type="text"	
+		maxlength="200"
+		required
+		id="name"
+		name="name">
+
+	<button type="submit">Create</button>
+</form>
+
+{% endblock %}

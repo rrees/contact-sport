@@ -1,8 +1,4 @@
-from .forms import form_handlers
+from .forms.form_routes import routes as form_routes
 from .pages import routes as page_routes
 
-routes = [
-    ("/forms/address/add", "address_add_form", form_handlers.address, ["POST"]),
-    ("/forms/contact/add", "contact_add_form", form_handlers.contact, ["POST"]),
-    ("/forms/email/add", "email_add_form", form_handlers.email, ["POST"]),
-] + page_routes
+routes = form_routes + page_routes

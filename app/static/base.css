@@ -1,0 +1,9 @@
+@import "flex.css";
+
+:root {
+	--unit-size: 4;
+}
+
+.gap {
+	gap: calc(var(--unit-size)*4px);
+}

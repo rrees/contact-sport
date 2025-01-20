@@ -1,18 +1,19 @@
 <!doctype HTML>
 <html lang="en">
-    <head>
-        <title>{% block title %}{% endblock %} | Contact Sport</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<title>{% block title %}{% endblock %} | Contact Sport</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<link rel="stylesheet" href="{{url_for('static', filename='water.css')}}">
 		<link href="{{url_for('static', filename='basscss.min.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename='base.css')}}" rel="stylesheet">
 	</head>
-    <body>
+	<body>
 		{% block navbar %}
 		{% include 'navigation/navbar.html' %}
 		{% endblock %}
-        {% block content %}
-        {% endblock %}
-    </body>
+		{% block content %}
+		{% endblock %}
+	</body>
 </html>

@@ -2,9 +2,10 @@ import flask
 
 from app.repositories import addresses as address_repository
 from app.repositories import contacts as contact_repository
+from app.repositories import directories as directory_repository
 from app.repositories import emails as email_repository
 
-from .form_models import AddressForm, ContactForm, EmailForm
+from .form_models import AddressForm, ContactForm, DirectoryForm, EmailForm
 
 
 def address():
@@ -46,3 +47,14 @@ def contact():
         return flask.redirect(flask.url_for("contact", contact_id=external_id))
 
     return flask.abort(400)
+
+
+def directory():
+    form = DirectoryForm(flask.request.form)
+
+    if form.validate():
+        [id, external_id] = directory_repository.create(form.name.data)
+
+        return flask.redirect(flask.url_for("directory", directory_id=external_id))
+
+    return flask.abort(400, "Form is invalid")

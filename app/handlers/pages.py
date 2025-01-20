@@ -28,10 +28,23 @@ def contact(contact_id):
 
 def directories():
     return flask.render_template(
-        "directories.html", directories=directories_repository.all()
+        "directories/directories.html", directories=directories_repository.all()
     )
+
+
+def directory(directory_id):
+    return flask.render_template(
+        "directories/directory.html",
+        directory=directories_repository.directory(directory_id),
+    )
+
+
+def create_directory():
+    return flask.render_template("directories/create.html")
 
 
 routes = [
     ("/directories", "directories", directories, ["GET"]),
+    ("/directories/new", "create_directory", create_directory, ["GET"]),
+    ("/directory/<directory_id>", "directory", directory, ["GET"]),
 ]

@@ -3,8 +3,8 @@
 
 CREATE TABLE IF NOT EXISTS directories (
 	id INT GENERATED ALWAYS AS IDENTITY,
-	external_id uuid UNIQUE NOT NULL,
-	name text NOT NULL,
+	external_id uuid UNIQUE NOT NULL DEFAULT gen_random_uuid (),
+	name text UNIQUE NOT NULL,
 	created timestamp default current_timestamp,
 	updated timestamp default current_timestamp,
 	PRIMARY KEY(id)
