@@ -1,0 +1,4 @@
+all = """
+SELECT *
+FROM directories
+"""

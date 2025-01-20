@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+
+{% block title %}Directories{% endblock %}
+
+{% block content %}
+<h1>Directories</h1>
+
+{% if directories %}
+<ul>
+{% for directory in directories %}
+	<li>directory.name</li>
+{% endfor %}
+</ul>
+{% else %}
+<p> No directories defined</p>
+
+<p><a>Create a directory</a></p>
+{% endif %}
+
+{% endblock %}
