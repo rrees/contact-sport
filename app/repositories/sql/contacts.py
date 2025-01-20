@@ -42,3 +42,17 @@ SELECT
     ) AS emails
 FROM contact
 WHERE external_id = %(external_id)s"""
+
+
+in_directory = """
+SELECT *
+FROM contact
+WHERE id IN (
+    SELECT contact_id
+    FROM directory_entries
+    WHERE directory_id = (
+        SELECT id
+        FROM directories
+        WHERE external_id = %(directory_id)s
+    )
+)"""

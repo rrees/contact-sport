@@ -36,6 +36,7 @@ def directory(directory_id):
     return flask.render_template(
         "directories/directory.html",
         directory=directories_repository.directory(directory_id),
+        contacts=contacts_repository.directory_contacts(directory_id),
     )
 
 

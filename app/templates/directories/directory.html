@@ -6,4 +6,12 @@
 <h1>{{directory.name}}</h1>
 
 
+{% if contacts %}
+<ul>
+	<li>{{contact.name}}</li>
+</ul>
+{% else %}
+<p>This directory does not have any contacts assigned to it yet</p>
+{% endif %}
+
 {% endblock %}

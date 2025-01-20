@@ -28,3 +28,13 @@ def full(an_id):
         with conn.cursor() as cursor:
             cursor.execute(sql_contacts.full, params)
             return cursor.fetchone()
+
+
+def directory_contacts(directory_external_id):
+    params = {"directory_id": directory_external_id}
+
+    with connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_contacts.in_directory, params)
+
+            return cursor.fetchall()
