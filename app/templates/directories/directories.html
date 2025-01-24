@@ -8,7 +8,7 @@
 {% if directories %}
 <ul>
 {% for directory in directories %}
-	<li>{{directory.name}}</li>
+	<li><a href="{{url_for('directory', directory_id=directory.external_id)}}">{{directory.name}}</a></li>
 {% endfor %}
 </ul>
 {% else %}
