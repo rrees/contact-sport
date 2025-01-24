@@ -16,14 +16,16 @@ def home_page():
 
 
 def contacts():
-    return flask.render_template("contacts.html", contacts=contacts_repository.all())
+    return flask.render_template(
+        "contacts/contacts.html", contacts=contacts_repository.all()
+    )
 
 
 def contact(contact_id):
     a_contact = contacts_repository.full(contact_id)
     contact_details = Contact.from_dict(a_contact)
 
-    return flask.render_template("contact.html", contact=contact_details)
+    return flask.render_template("contacts/contact.html", contact=contact_details)
 
 
 def directories():

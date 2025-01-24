@@ -15,9 +15,54 @@
 {% endif %}
 
 
-<form class="cluster">
-	<label>Contact name: <input name="name" required maxlength="100"></label>
-	<button type="submit">Find</button>
-</form>
+<contact-searcher>
+<details open>
+	<summary>Add someone to the directory</summary>
+
+	<form class="cluster">
+		<label>Contact name: <input name="name" required maxlength="100"></label>
+		<button type="submit">Find</button>
+	</form>
+
+	<div id="contact-search-results">
+	</div>
+</details>
+</contact-searcher>
+
+{% endblock %}
+
+{% block script %}
+
+<script defer>
+	class ContactSearcher extends HTMLElement {
+		constructor() {
+			super();
+			console.log('Hello world');
+		}
+
+		connectedCallback() {
+			console.log('Component connected');
+
+			function handleSearch(event) {
+				event.preventDefault();
+				console.log(event);
+				const apiUrl = '{{url_for('api-contacts-find', name="nick")}}';
+				console.log(apiUrl);
+				fetch(apiUrl).then((response) => {
+
+					console.log(response);
+
+					response.text().then((responseHtml) => {
+						this.querySelector('#contact-search-results').innerHTML = responseHtml;
+					});
+				});
+			}
+
+			this.addEventListener('click', handleSearch);
+		}
+	}
+
+	customElements.define('contact-searcher', ContactSearcher);
+</script>
 
 {% endblock %}
