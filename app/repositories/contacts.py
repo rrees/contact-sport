@@ -38,3 +38,13 @@ def directory_contacts(directory_external_id):
             cursor.execute(sql_contacts.in_directory, params)
 
             return cursor.fetchall()
+
+
+def by_name(name):
+    params = {"name": f"%{name}%"}
+
+    with connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_contacts.find_by_name, params)
+
+            return cursor.fetchall()

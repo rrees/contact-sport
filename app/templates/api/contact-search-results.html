@@ -1,7 +1,5 @@
 <ul>
-	<li>Testing</li>
-	<li>Testing</li>
-	{% if name %}
-	<li>{{name}}</li>
-	{% endif %}
+	{% for contact in contacts %}
+	<li data-external-id="{{contact.external_id}}">{{contact.name}}</li>
+	{% endfor %}
 </ul>

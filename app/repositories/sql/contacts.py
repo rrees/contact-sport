@@ -56,3 +56,9 @@ WHERE id IN (
         WHERE external_id = %(directory_id)s
     )
 )"""
+
+find_by_name = """
+SELECT *
+FROM contact
+WHERE name ILIKE %(name)s
+"""
