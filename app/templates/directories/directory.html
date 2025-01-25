@@ -1,6 +1,6 @@
 {% extends 'default.html' %}
 
-{% block title %}{{directory.name}} - Directory{% endblock %}
+{% block title %}{{directory.name}} | Directory{% endblock %}
 
 {% block content %}
 <h1>{{directory.name}}</h1>
@@ -24,8 +24,14 @@
 		<button type="submit">Find</button>
 	</form>
 
-	<div id="contact-search-results">
-	</div>
+	<form>
+		<input type="hidden"
+			name="directory_id"
+			value="{{directory.external_id}}">
+		<div id="contact-search-results">
+		</div>
+	</form>
+	
 </details>
 </contact-searcher>
 
