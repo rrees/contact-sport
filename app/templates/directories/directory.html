@@ -52,7 +52,7 @@
 			function handleSearch(event) {
 				event.preventDefault();
 				console.log(event);
-				const apiUrl = '{{url_for('api-contacts-find', name="nick")}}';
+				const apiUrl = '{{url_for('directory_find_contacts_by_name', name="nick")}}';
 				console.log(apiUrl);
 				fetch(apiUrl).then((response) => {
 
