@@ -58,3 +58,7 @@ def directory():
         return flask.redirect(flask.url_for("directory", directory_id=external_id))
 
     return flask.abort(400, "Form is invalid")
+
+
+def add_contact_to_directory(directory_id, contact_id):
+    return flask.redirect(flask.url_for("directory", directory_id=directory_id))

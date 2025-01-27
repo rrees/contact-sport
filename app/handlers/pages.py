@@ -46,11 +46,15 @@ def create_directory():
     return flask.render_template("directories/create.html")
 
 
-def find_contacts_for_directory(name, exclude_directory=None):
+def find_contacts_for_directory(name, directory_id, exclude_directory=None):
     matching_contacts = contacts_repository.by_name(name)
+    directory = directories_repository.directory(directory_id)
 
     return flask.render_template(
-        "api/contact-search-results.html", name=name, contacts=matching_contacts
+        "directories/contact-search-results.html",
+        name=name,
+        contacts=matching_contacts,
+        directory=directory,
     )
 
 
@@ -59,7 +63,7 @@ routes = [
     ("/directories/new", "create_directory", create_directory, ["GET"]),
     ("/directory/<directory_id>", "directory", directory, ["GET"]),
     (
-        "/directory/find-contacts/by-name/<name>",
+        "/directory/<directory_id>/find-contacts/by-name/<name>",
         "directory_find_contacts_by_name",
         find_contacts_for_directory,
         ["GET"],
