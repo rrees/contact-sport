@@ -61,4 +61,6 @@ def directory():
 
 
 def add_contact_to_directory(directory_id, contact_id):
+    directory_repository.add_contact(directory_id, contact_id)
+
     return flask.redirect(flask.url_for("directory", directory_id=directory_id))

@@ -8,19 +8,22 @@
 
 {% if contacts %}
 <ul>
-	<li>{{contact.name}}</li>
+	{% for contact in contacts %}
+	<li><a href="{{url_for('contact', contact_id=contact.external_id)}}">{{contact.name}}</a></li>
+	{% endfor %}
 </ul>
 {% else %}
 <p>This directory does not have any contacts assigned to it yet</p>
 {% endif %}
 
 
-<contact-searcher>
+<contact-searcher directory-id="{{directory.external_id}}">
 <details open>
 	<summary>Add someone to the directory</summary>
 
 	<form class="search-form" class="cluster">
-		<label>Contact name: <input name="name" required maxlength="100"></label>
+		<input name="directory-id" value="{{directory.external_id}}" type="hidden"/>
+		<label>Contact name: <input name="name" required maxlength="100" required></label>
 		<button type="submit">Find</button>
 	</form>
 
@@ -50,7 +53,12 @@
 			function handleSearch(event) {
 				event.preventDefault();
 				event.target.disabled = true;
-				const apiUrl = '{{url_for('directory_find_contacts_by_name', directory_id=directory.external_id, name="nick")}}';
+
+				const formData = new FormData(event.target);
+
+				console.log(formData);
+
+				const apiUrl = `/directory/${formData.get('directory-id')}/find-contacts/by-name/${formData.get('name')}`;
 				console.log(apiUrl);
 				fetch(apiUrl).then((response) => {
 
@@ -62,7 +70,7 @@
 				}).finally(() => event.target.disabled = false);
 			}
 
-			this.querySelector('.search-form').addEventListener('click', handleSearch);
+			this.querySelector('.search-form').addEventListener('submit', handleSearch);
 		}
 	}
 
