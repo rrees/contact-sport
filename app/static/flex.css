@@ -1,3 +1,19 @@
 .flex {
 	display: flex;
 }
+
+.cluster {
+	display: flex;
+	align-items: center;
+	gap: calc(2px*var(--unit-size));
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	gap: calc(2px*var(--unit-size));
+}
+
+.space-between {
+	justify-content: space-between;
+}

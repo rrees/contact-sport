@@ -2,10 +2,13 @@
 	<input type="hidden"
 		name="directory_id"
 		value="{{directory.external_id}}">
-	<ul>
+	<ul class="undecorated half-width">
 		{% for contact in contacts %}
-		<li class="cluster" data-external-id="{{contact.external_id}}">{{contact.name}} <button type="submit"
-			formaction="{{url_for('directory_add_contact_form', directory_id=directory.external_id, contact_id=contact.external_id)}}">Add</button></li>
+		<li class="cluster space-between" data-external-id="{{contact.external_id}}">
+			<span>{{contact.name}}</span>
+			<button type="submit"
+			formaction="{{url_for('directory_add_contact_form', directory_id=directory.external_id, contact_id=contact.external_id)}}">Add</button>
+		</li>
 		{% endfor %}
 	</ul>
 </form>

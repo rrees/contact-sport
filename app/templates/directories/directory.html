@@ -2,12 +2,16 @@
 
 {% block title %}{{directory.name}} | Directory{% endblock %}
 
+{% block page_stylesheet %}
+<link href="{{url_for('static', filename='css/directories.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <h1>{{directory.name}}</h1>
 
 
 {% if contacts %}
-<ul>
+<ul class="mb3">
 	{% for contact in contacts %}
 	<li><a href="{{url_for('contact', contact_id=contact.external_id)}}">{{contact.name}}</a></li>
 	{% endfor %}
@@ -21,9 +25,10 @@
 <details open>
 	<summary>Add someone to the directory</summary>
 
-	<form class="search-form" class="cluster">
+	<form class="search-form stack">
 		<input name="directory-id" value="{{directory.external_id}}" type="hidden"/>
-		<label>Contact name: <input name="name" required maxlength="100" required></label>
+		<label for="name">Contact name: </label>
+		<input id="name" name="name" required maxlength="100" required>
 		<button type="submit">Find</button>
 	</form>
 
@@ -39,42 +44,7 @@
 {% block script %}
 
 <script defer>
-	class ContactSearcher extends HTMLElement {
-		constructor() {
-			super();
-			console.log('Hello world');
-		}
-
-		connectedCallback() {
-			console.log('Component connected');
-
-			const searchResultsElement = this.querySelector('#contact-search-results');
-
-			function handleSearch(event) {
-				event.preventDefault();
-				event.target.disabled = true;
-
-				const formData = new FormData(event.target);
-
-				console.log(formData);
-
-				const apiUrl = `/directory/${formData.get('directory-id')}/find-contacts/by-name/${formData.get('name')}`;
-				console.log(apiUrl);
-				fetch(apiUrl).then((response) => {
-
-					console.log(response);
-
-					response.text().then((responseHtml) => {
-						searchResultsElement.innerHTML = responseHtml;
-					});
-				}).finally(() => event.target.disabled = false);
-			}
-
-			this.querySelector('.search-form').addEventListener('submit', handleSearch);
-		}
-	}
-
-	customElements.define('contact-searcher', ContactSearcher);
+	import('{{url_for("static", filename="js/ContactSearcher.js")}}');
 </script>
 
 {% endblock %}

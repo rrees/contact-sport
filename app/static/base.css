@@ -4,6 +4,18 @@
 	--unit-size: 4;
 }
 
+ul {
+	padding: 0;
+}
+
+.undecorated {
+	list-style: none;
+}
+
 .gap {
 	gap: calc(var(--unit-size)*4px);
+}
+
+.half-width {
+	width: 50%;
 }

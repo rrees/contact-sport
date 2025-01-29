@@ -1,0 +1,10 @@
+
+.search-form {
+	display: flex;
+	flex-direction: column;
+
+	@media(width >= 500px) {
+		flex-direction: row;
+		align-items: center;
+	}
+}
