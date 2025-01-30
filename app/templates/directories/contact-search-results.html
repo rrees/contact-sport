@@ -9,6 +9,8 @@
 			<button type="submit"
 			formaction="{{url_for('directory_add_contact_form', directory_id=directory.external_id, contact_id=contact.external_id)}}">Add</button>
 		</li>
+		{% else %}
+		<li>No contacts found matching {{name}}</li>
 		{% endfor %}
 	</ul>
 </form>

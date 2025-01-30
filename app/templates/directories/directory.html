@@ -44,7 +44,15 @@
 {% block script %}
 
 <script defer>
-	import('{{url_for("static", filename="js/ContactSearcher.js")}}');
+	const componentDirectory = '{{url_for("static", filename="js")}}';
+	const components = [
+		['contact-searcher', 'ContactSearcher'],
+	]
+	for ([tagName, componentName] of components) {
+		if(document.querySelector(tagName)) {
+			import(`${componentDirectory}/${componentName}.js`);
+		}
+	}
 </script>
 
 {% endblock %}
