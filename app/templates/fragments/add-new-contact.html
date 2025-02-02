@@ -1,0 +1,10 @@
+<details>
+	<summary>Add a new contact</summary>
+	<form method="POST"
+		action="{{url_for('contact_add_form')}}">
+		
+		{% include 'forms/contact.html' %}
+
+		<button type="submit">Save</button>
+	</form>
+</details>

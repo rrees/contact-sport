@@ -4,10 +4,6 @@
 	--unit-size: 4;
 }
 
-ul {
-	padding: 0;
-}
-
 .undecorated {
 	list-style: none;
 }
